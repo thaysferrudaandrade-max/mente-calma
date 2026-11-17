@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="cream" data-font="lexend">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mente Calma — Jogo da Memória Cognitivo e Acessível</title>
+  <!-- Fontes recomendadas para leitura fluida e dislexia -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Barra Superior de Acessibilidade Sensorial -->
+  <header class="top-bar" aria-label="Configurações de acessibilidade">
+    <div class="brand">
+      <span class="brand-icon" aria-hidden="true">🧠</span>
+      <div>
+        <h1>Mente Calma</h1>
+        <p class="subtitle">Treino de memória, foco e consciência fonológica</p>
+      </div>
+    </div>
+
+    <div class="a11y-controls">
+      <!-- Seletor de Paleta Suave -->
+      <div class="control-group" role="group" aria-label="Escolher paleta de cores">
+        <span class="control-label">Cores:</span>
+        <button type="button" class="theme-btn active" data-set-theme="cream" title="Creme Suave" aria-label="Tema Creme Suave">
+          <span class="swatch swatch-cream"></span>
+        </button>
+        <button type="button" class="theme-btn" data-set-theme="sage" title="Verde Sálvia" aria-label="Tema Verde Sálvia">
+          <span class="swatch swatch-sage"></span>
+        </button>
+        <button type="button" class="theme-btn" data-set-theme="blue" title="Azul Sereno" aria-label="Tema Azul Sereno">
+          <span class="swatch swatch-blue"></span>
+        </button>
+        <button type="button" class="theme-btn" data-set-theme="dark" title="Noturno Suave" aria-label="Tema Noturno Suave">
+          <span class="swatch swatch-dark"></span>
+        </button>
+      </div>
+
+      <!-- Fonte e Espaçamento -->
+      <div class="control-group">
+        <button type="button" id="toggle-font" class="pill-btn" aria-pressed="false" title="Alternar fonte">
+          Aa Fonte: Lexend
+        </button>
+        <button type="button" id="toggle-spacing" class="pill-btn" aria-pressed="false" title="Aumentar espaçamento entre letras">
+          ↔ Espaço Amplo
+        </button>
+        <button type="button" id="toggle-audio" class="pill-btn active" aria-pressed="true" title="Ativar ou desativar voz e sons suaves">
+          🔊 Voz e Som: Ligado
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Painel de Modos Cognitivos e Níveis -->
+    <section class="setup-panel" aria-label="Configurações da partida">
+      <div class="setup-row">
+        <div class="setup-block">
+          <label for="game-mode">Modo Cognitivo:</label>
+          <select id="game-mode" class="select-input">
+            <option value="classic">1. Clássico (Imagem + Sílabas Coloridas)</option>
+            <option value="word-image">2. Associação (Imagem ↔ Palavra)</option>
+            <option value="rhyme">3. Desafio de Rimas (Sons Parecidos)</option>
+          </select>
+        </div>
+
+        <div class="setup-block">
+          <label for="difficulty">Nível de Complexidade:</label>
+          <select id="difficulty" class="select-input">
+            <option value="6">Nível 1 — Tranquilo (12 cartas)</option>
+            <option value="8" selected>Nível 2 — Foco Ativo (16 cartas)</option>
+            <option value="12">Nível 3 — Mestre da Memória (24 cartas)</option>
+          </select>
+        </div>
+
+        <div class="setup-actions">
+          <button type="button" id="btn-peek" class="action-btn secondary" title="Revela as cartas por 2,5 segundos para ajudar na memorização">
+            👁️ Espiar Calmo
+          </button>
+          <button type="button" id="btn-restart" class="action-btn primary">
+            🔄 Novo Jogo
+          </button>
+        </div>
+      </div>
+
+      <!-- Explicação dinâmica do modo atual -->
+      <p id="mode-description" class="mode-banner" role="status">
+        Encontre os pares idênticos. As sílabas têm cores diferentes para facilitar a leitura.
+      </p>
+    </section>
+
+    <!-- Indicadores de Progresso (Sem cronômetro estressante) -->
+    <section class="stats-bar" aria-label="Progresso da partida">
+      <div class="stat-card">
+        <span class="stat-title">Pares Encontrados</span>
+        <strong id="stat-pairs" class="stat-value">0 / 8</strong>
+      </div>
+      <div class="stat-card">
+        <span class="stat-title">Tentativas</span>
+        <strong id="stat-moves" class="stat-value">0</strong>
+      </div>
+      <div class="stat-card">
+        <span class="stat-title">Sequência Atual</span>
+        <strong id="stat-streak" class="stat-value">0 ✨</strong>
+      </div>
+      <div class="stat-card">
+        <span class="stat-title">Melhor Precisão</span>
+        <strong id="stat-best" class="stat-value">—</strong>
+      </div>
+    </section>
+
+    <!-- Tabuleiro do Jogo -->
+    <section class="board-wrapper">
+      <div id="game-board" class="game-board grid-8" role="grid" aria-label="Tabuleiro de cartas da memória"></div>
+    </section>
+
+    <!-- Nota Educativa sobre o Design -->
+    <details class="info-accordion">
+      <summary>💡 Como este jogo estimula o cérebro e ajuda pessoas com dislexia?</summary>
+      <div class="info-content">
+        <ul>
+          <li><strong>Segmentação Silábica por Cores:</strong> Separar visualmente cada sílaba reduz a inversão de letras e apoia a decodificação da leitura.</li>
+          <li><strong>Dupla Codificação (Visual + Auditiva):</strong> Ao virar uma carta, o navegador pronuncia a palavra pausadamente em português, conectando som, imagem e escrita.</li>
+          <li><strong>Ausência de Pressão Temporal:</strong> Pessoas com dislexia podem precisar de alguns milissegundos extras para processar símbolos escritos; remover o relógio elimina a ansiedade e melhora a retenção da memória de trabalho.</li>
+          <li><strong>Contraste Suave:</strong> Fundos em creme, verde-sálvia ou azul-sereno evitam o reflexo intenso do branco puro (<em>estresse visual de Irlen</em>).</li>
+        </ul>
+      </div>
+    </details>
+  </main>
+
+  <!-- Modal de Conclusão -->
+  <div id="victory-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="victory-title">
+    <div class="modal-card">
+      <div class="modal-badge" aria-hidden="true">🌿🏆🌿</div>
+      <h2 id="victory-title">Excelente Concentração!</h2>
+      <p id="victory-message">Você completou todos os pares com calma e atenção.</p>
+
+      <div class="modal-stats">
+        <div>
+          <span>Tentativas</span>
+          <strong id="final-moves">0</strong>
+        </div>
+        <div>
+          <span>Precisão</span>
+          <strong id="final-accuracy">100%</strong>
+        </div>
+        <div>
+          <span>Dicas Usadas</span>
+          <strong id="final-hints">0</strong>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" id="btn-play-again" class="action-btn secondary">Jogar Novamente</button>
+        <button type="button" id="btn-next-level" class="action-btn primary">Próximo Nível ➔</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

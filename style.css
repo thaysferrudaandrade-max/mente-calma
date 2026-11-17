@@ -1,0 +1,621 @@
+/* =========================================================
+   VARIÁVEIS DE TEMAS CALMOS (EVITAM BRANCO PURO OFUSCANTE)
+   ========================================================= */
+   :root,
+   [data-theme="cream"] {
+     --bg-page: #F6F1E7;
+     --bg-surface: #FFFDF8;
+     --bg-card-front: #FFFDF8;
+     --bg-card-back: #DCE7E2;
+     --bg-card-back-hover: #CFE0D8;
+     --text-main: #2B303A;
+     --text-muted: #5A6270;
+     --accent: #3B7A6B;
+     --accent-hover: #2F6356;
+     --accent-soft: #E3F0EC;
+     --border-color: #DCD4C4;
+     --match-border: #4A8F7B;
+     --match-bg: #EEF7F4;
+     --shadow-soft: 0 6px 18px rgba(43, 48, 58, 0.06);
+   }
+   
+   [data-theme="sage"] {
+     --bg-page: #E9F1EC;
+     --bg-surface: #F7FBF8;
+     --bg-card-front: #F9FCFA;
+     --bg-card-back: #C9DDD1;
+     --bg-card-back-hover: #B9D2C3;
+     --text-main: #223128;
+     --text-muted: #516659;
+     --accent: #386FA4;
+     --accent-hover: #2C5985;
+     --accent-soft: #E2EDF7;
+     --border-color: #C7D8CE;
+     --match-border: #3E8264;
+     --match-bg: #E7F5EE;
+     --shadow-soft: 0 6px 18px rgba(34, 49, 40, 0.06);
+   }
+   
+   [data-theme="blue"] {
+     --bg-page: #E8F0F7;
+     --bg-surface: #F7FAFD;
+     --bg-card-front: #FAFCFF;
+     --bg-card-back: #C8D9EA;
+     --bg-card-back-hover: #B8CEE3;
+     --text-main: #1F2D3D;
+     --text-muted: #516378;
+     --accent: #3C6E9C;
+     --accent-hover: #2E577D;
+     --accent-soft: #E0ECF7;
+     --border-color: #C5D5E6;
+     --match-border: #3D8377;
+     --match-bg: #E8F5F3;
+     --shadow-soft: 0 6px 18px rgba(31, 45, 61, 0.06);
+   }
+   
+   [data-theme="dark"] {
+     --bg-page: #1C212B;
+     --bg-surface: #252C38;
+     --bg-card-front: #2A3240;
+     --bg-card-back: #344154;
+     --bg-card-back-hover: #3F4E65;
+     --text-main: #EAEFF7;
+     --text-muted: #A6B2C4;
+     --accent: #68B09E;
+     --accent-hover: #7CC2B0;
+     --accent-soft: #283B3A;
+     --border-color: #3A4456;
+     --match-border: #68B09E;
+     --match-bg: #233836;
+     --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.25);
+   }
+   
+   /* =========================================================
+      TIPOGRAFIA E ESPAÇAMENTO PARA DISLEXIA
+      ========================================================= */
+   [data-font="lexend"] {
+     --font-family: 'Lexend', Verdana, sans-serif;
+   }
+   
+   [data-font="atkinson"] {
+     --font-family: 'Atkinson Hyperlegible', Verdana, sans-serif;
+   }
+   
+   body {
+     margin: 0;
+     padding: 0;
+     font-family: var(--font-family);
+     background-color: var(--bg-page);
+     color: var(--text-main);
+     line-height: 1.6;
+     letter-spacing: 0.02em;
+     transition: background-color 0.35s ease, color 0.35s ease;
+   }
+   
+   body.wide-spacing {
+     letter-spacing: 0.11em;
+     word-spacing: 0.24em;
+     line-height: 1.8;
+   }
+   
+   * {
+     box-sizing: border-box;
+   }
+   
+   /* =========================================================
+      CABEÇALHO E BARRA DE ACESSIBILIDADE
+      ========================================================= */
+   .top-bar {
+     background-color: var(--bg-surface);
+     border-bottom: 2px solid var(--border-color);
+     padding: 1rem 1.5rem;
+     display: flex;
+     flex-wrap: wrap;
+     align-items: center;
+     justify-content: space-between;
+     gap: 1rem;
+     box-shadow: var(--shadow-soft);
+   }
+   
+   .brand {
+     display: flex;
+     align-items: center;
+     gap: 0.85rem;
+   }
+   
+   .brand-icon {
+     font-size: 2rem;
+     background: var(--accent-soft);
+     padding: 0.45rem 0.65rem;
+     border-radius: 14px;
+   }
+   
+   .brand h1 {
+     margin: 0;
+     font-size: 1.35rem;
+     font-weight: 700;
+   }
+   
+   .subtitle {
+     margin: 0;
+     font-size: 0.88rem;
+     color: var(--text-muted);
+   }
+   
+   .a11y-controls {
+     display: flex;
+     flex-wrap: wrap;
+     align-items: center;
+     gap: 0.75rem;
+   }
+   
+   .control-group {
+     display: flex;
+     align-items: center;
+     gap: 0.45rem;
+     flex-wrap: wrap;
+   }
+   
+   .control-label {
+     font-size: 0.85rem;
+     font-weight: 600;
+     color: var(--text-muted);
+   }
+   
+   .theme-btn {
+     width: 32px;
+     height: 32px;
+     border-radius: 50%;
+     border: 2px solid var(--border-color);
+     background: transparent;
+     padding: 3px;
+     cursor: pointer;
+     display: grid;
+     place-items: center;
+     transition: transform 0.2s ease, border-color 0.2s ease;
+   }
+   
+   .theme-btn.active {
+     border-color: var(--accent);
+     transform: scale(1.12);
+   }
+   
+   .swatch {
+     width: 100%;
+     height: 100%;
+     border-radius: 50%;
+     display: block;
+   }
+   .swatch-cream { background: #F6F1E7; }
+   .swatch-sage  { background: #CFE0D6; }
+   .swatch-blue  { background: #C8D9EA; }
+   .swatch-dark  { background: #252C38; }
+   
+   .pill-btn {
+     font-family: inherit;
+     font-size: 0.85rem;
+     font-weight: 600;
+     padding: 0.45rem 0.85rem;
+     border-radius: 999px;
+     border: 2px solid var(--border-color);
+     background-color: var(--bg-page);
+     color: var(--text-main);
+     cursor: pointer;
+     transition: all 0.2s ease;
+   }
+   
+   .pill-btn:hover {
+     border-color: var(--accent);
+   }
+   
+   .pill-btn.active {
+     background-color: var(--accent-soft);
+     border-color: var(--accent);
+     color: var(--text-main);
+   }
+   
+   /* =========================================================
+      CONTAINER E PAINEL DE CONFIGURAÇÃO
+      ========================================================= */
+   .container {
+     max-width: 1040px;
+     margin: 1.5rem auto 3rem;
+     padding: 0 1rem;
+     display: flex;
+     flex-direction: column;
+     gap: 1.25rem;
+   }
+   
+   .setup-panel {
+     background-color: var(--bg-surface);
+     border: 2px solid var(--border-color);
+     border-radius: 18px;
+     padding: 1.2rem 1.4rem;
+     box-shadow: var(--shadow-soft);
+   }
+   
+   .setup-row {
+     display: flex;
+     flex-wrap: wrap;
+     align-items: flex-end;
+     justify-content: space-between;
+     gap: 1rem;
+   }
+   
+   .setup-block {
+     display: flex;
+     flex-direction: column;
+     gap: 0.35rem;
+     flex: 1 1 240px;
+   }
+   
+   .setup-block label {
+     font-size: 0.88rem;
+     font-weight: 600;
+     color: var(--text-muted);
+   }
+   
+   .select-input {
+     font-family: inherit;
+     font-size: 0.95rem;
+     font-weight: 500;
+     padding: 0.65rem 0.85rem;
+     border-radius: 12px;
+     border: 2px solid var(--border-color);
+     background-color: var(--bg-page);
+     color: var(--text-main);
+     cursor: pointer;
+   }
+   
+   .select-input:focus,
+   button:focus-visible {
+     outline: 3px solid var(--accent);
+     outline-offset: 2px;
+   }
+   
+   .setup-actions {
+     display: flex;
+     gap: 0.65rem;
+     flex-wrap: wrap;
+   }
+   
+   .action-btn {
+     font-family: inherit;
+     font-size: 0.95rem;
+     font-weight: 600;
+     padding: 0.68rem 1.2rem;
+     border-radius: 12px;
+     border: 2px solid transparent;
+     cursor: pointer;
+     transition: transform 0.15s ease, background-color 0.2s ease;
+   }
+   
+   .action-btn:active {
+     transform: scale(0.98);
+   }
+   
+   .action-btn.primary {
+     background-color: var(--accent);
+     color: #FFFFFF;
+   }
+   
+   [data-theme="dark"] .action-btn.primary {
+     color: #131820;
+   }
+   
+   .action-btn.primary:hover {
+     background-color: var(--accent-hover);
+   }
+   
+   .action-btn.secondary {
+     background-color: var(--accent-soft);
+     color: var(--text-main);
+     border-color: var(--border-color);
+   }
+   
+   .action-btn.secondary:hover {
+     border-color: var(--accent);
+   }
+   
+   .action-btn:disabled {
+     opacity: 0.55;
+     cursor: not-allowed;
+   }
+   
+   .mode-banner {
+     margin: 1rem 0 0;
+     padding: 0.7rem 1rem;
+     background-color: var(--accent-soft);
+     border-left: 4px solid var(--accent);
+     border-radius: 8px;
+     font-size: 0.92rem;
+   }
+   
+   /* =========================================================
+      BARRA DE ESTATÍSTICAS
+      ========================================================= */
+   .stats-bar {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+     gap: 0.85rem;
+   }
+   
+   .stat-card {
+     background-color: var(--bg-surface);
+     border: 2px solid var(--border-color);
+     border-radius: 14px;
+     padding: 0.85rem 1rem;
+     text-align: center;
+     box-shadow: var(--shadow-soft);
+   }
+   
+   .stat-title {
+     display: block;
+     font-size: 0.82rem;
+     color: var(--text-muted);
+     margin-bottom: 0.2rem;
+   }
+   
+   .stat-value {
+     font-size: 1.3rem;
+     font-weight: 700;
+     color: var(--accent);
+   }
+   
+   /* =========================================================
+      TABULEIRO E CARTAS 3D
+      ========================================================= */
+   .game-board {
+     display: grid;
+     gap: 0.9rem;
+     justify-content: center;
+   }
+   
+   /* Grade adaptativa conforme dificuldade */
+   .game-board.grid-6 {
+     grid-template-columns: repeat(4, minmax(120px, 190px));
+   }
+   
+   .game-board.grid-8 {
+     grid-template-columns: repeat(4, minmax(120px, 190px));
+   }
+   
+   .game-board.grid-12 {
+     grid-template-columns: repeat(6, minmax(105px, 155px));
+   }
+   
+   .memory-card {
+     aspect-ratio: 4 / 4.3;
+     perspective: 1000px;
+     background: transparent;
+     border: none;
+     padding: 0;
+     cursor: pointer;
+     font-family: inherit;
+     color: var(--text-main);
+   }
+   
+   .card-inner {
+     position: relative;
+     width: 100%;
+     height: 100%;
+     transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+     transform-style: preserve-3d;
+   }
+   
+   .memory-card.flipped .card-inner,
+   .memory-card.matched .card-inner {
+     transform: rotateY(180deg);
+   }
+   
+   .card-face {
+     position: absolute;
+     inset: 0;
+     backface-visibility: hidden;
+     border-radius: 16px;
+     border: 2px solid var(--border-color);
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     padding: 0.65rem;
+     box-shadow: var(--shadow-soft);
+     user-select: none;
+   }
+   
+   /* Verso da Carta (Fechada) */
+   .card-back {
+     background-color: var(--bg-card-back);
+     transition: background-color 0.2s ease, transform 0.2s ease;
+   }
+   
+   .memory-card:not(.flipped):not(.matched):hover .card-back {
+     background-color: var(--bg-card-back-hover);
+   }
+   
+   .card-pattern {
+     font-size: 1.75rem;
+     opacity: 0.55;
+   }
+   
+   .card-number {
+     position: absolute;
+     top: 8px;
+     left: 10px;
+     font-size: 0.75rem;
+     font-weight: 700;
+     color: var(--text-muted);
+     opacity: 0.75;
+   }
+   
+   /* Frente da Carta (Aberta) */
+   .card-front {
+     background-color: var(--bg-card-front);
+     transform: rotateY(180deg);
+     gap: 0.45rem;
+   }
+   
+   .memory-card.matched .card-front {
+     background-color: var(--match-bg);
+     border-color: var(--match-border);
+     border-width: 3px;
+   }
+   
+   .card-emoji {
+     font-size: 2.5rem;
+     line-height: 1.1;
+   }
+   
+   .card-emoji.only-image {
+     font-size: 3.4rem;
+   }
+   
+   .card-tag {
+     font-size: 0.7rem;
+     font-weight: 700;
+     text-transform: uppercase;
+     padding: 0.15rem 0.5rem;
+     border-radius: 999px;
+     background-color: var(--accent-soft);
+     color: var(--text-muted);
+   }
+   
+   /* Sílabas Coloridas para Apoio na Dislexia */
+   .syllable-word {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     gap: 3px;
+     font-size: 1.12rem;
+     font-weight: 700;
+   }
+   
+   .syllable-word.only-word {
+     font-size: 1.32rem;
+   }
+   
+   .syl {
+     padding: 2px 5px;
+     border-radius: 6px;
+   }
+   
+   /* Cores pastel suaves e legíveis para diferenciar sílabas */
+   .syl-0 { background-color: rgba(114, 176, 155, 0.26); }
+   .syl-1 { background-color: rgba(230, 179, 102, 0.28); }
+   .syl-2 { background-color: rgba(132, 169, 214, 0.28); }
+   .syl-3 { background-color: rgba(206, 147, 178, 0.26); }
+   
+   /* =========================================================
+      ACORDEÃO EDUCATIVO E MODAL DE VITÓRIA
+      ========================================================= */
+   .info-accordion {
+     background-color: var(--bg-surface);
+     border: 2px solid var(--border-color);
+     border-radius: 14px;
+     padding: 0.9rem 1.2rem;
+     margin-top: 0.5rem;
+   }
+   
+   .info-accordion summary {
+     font-weight: 600;
+     cursor: pointer;
+   }
+   
+   .info-content ul {
+     margin: 0.75rem 0 0;
+     padding-left: 1.25rem;
+     display: flex;
+     flex-direction: column;
+     gap: 0.45rem;
+   }
+   
+   .modal-backdrop {
+     position: fixed;
+     inset: 0;
+     background: rgba(20, 26, 34, 0.55);
+     backdrop-filter: blur(4px);
+     display: grid;
+     place-items: center;
+     padding: 1rem;
+     z-index: 100;
+   }
+   
+   .modal-backdrop.hidden {
+     display: none;
+   }
+   
+   .modal-card {
+     background-color: var(--bg-surface);
+     border: 2px solid var(--border-color);
+     border-radius: 22px;
+     padding: 2rem;
+     max-width: 460px;
+     width: 100%;
+     text-align: center;
+     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+   }
+   
+   .modal-badge {
+     font-size: 2.3rem;
+     margin-bottom: 0.5rem;
+   }
+   
+   .modal-stats {
+     display: grid;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 0.6rem;
+     margin: 1.3rem 0;
+     background-color: var(--bg-page);
+     padding: 0.9rem;
+     border-radius: 14px;
+   }
+   
+   .modal-stats span {
+     display: block;
+     font-size: 0.8rem;
+     color: var(--text-muted);
+   }
+   
+   .modal-stats strong {
+     font-size: 1.25rem;
+     color: var(--accent);
+   }
+   
+   .modal-actions {
+     display: flex;
+     justify-content: center;
+     gap: 0.75rem;
+     flex-wrap: wrap;
+   }
+   
+   /* =========================================================
+      RESPONSIVIDADE E PREFERÊNCIA DE MOVIMENTO REDUZIDO
+      ========================================================= */
+   @media (max-width: 780px) {
+     .game-board.grid-12 {
+       grid-template-columns: repeat(4, 1fr);
+     }
+   }
+   
+   @media (max-width: 540px) {
+     .game-board.grid-6,
+     .game-board.grid-8,
+     .game-board.grid-12 {
+       grid-template-columns: repeat(3, 1fr);
+       gap: 0.6rem;
+     }
+   
+     .card-emoji {
+       font-size: 2rem;
+     }
+   
+     .syllable-word {
+       font-size: 0.95rem;
+     }
+   }
+   
+   @media (prefers-reduced-motion: reduce) {
+     .card-inner {
+       transition: none;
+     }
+   }
